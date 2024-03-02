@@ -1,29 +1,24 @@
 package in.aakashsinha.ToDoList.entity;
 
 import in.aakashsinha.ToDoList.constants.Status;
-import jakarta.persistence.*;
 import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
+
+@Document(collection = "task")
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "ID")
-    private long id;
-
-    @Column(name = "LIST")
+    private ObjectId id;
     @NonNull
     private String list;
-
-    @Column(name = "TIME")
     private Instant timeStamp;
-
-    @Column(name = "STATUS")
     private Status status = Status.INCOMPLETE;
 }

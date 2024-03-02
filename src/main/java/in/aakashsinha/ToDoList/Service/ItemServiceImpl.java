@@ -2,10 +2,10 @@ package in.aakashsinha.ToDoList.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import in.aakashsinha.ToDoList.Model.RequestBodyForList;
-import in.aakashsinha.ToDoList.constants.Status;
 import in.aakashsinha.ToDoList.entity.Item;
 import in.aakashsinha.ToDoList.repository.ItemRepository;
 import lombok.extern.log4j.Log4j2;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,23 +22,22 @@ public class ItemServiceImpl implements ItemService {
     ItemRepository itemRepository;
 
     @Override
-    public Long addToList(RequestBodyForList requestBodyForList) {
+    public ObjectId addToList(RequestBodyForList requestBodyForList) {
         ObjectMapper objectMapper = new ObjectMapper();
         Item item = objectMapper.convertValue(requestBodyForList, Item.class);
         item.setTimeStamp(Instant.now());
 
         item = itemRepository.save(item);
 
-
         log.info("item added");
         return item.getId();
     }
 
     @Override
-    public HttpStatusCode updateList(long id, RequestBodyForList status) {
+    public HttpStatusCode updateList(ObjectId id, RequestBodyForList status) {
 
         //check if exists
-        if(itemRepository.findById(id).isPresent()){
+        if (itemRepository.findById(id).isPresent()) {
             //true -> update
             Item item = itemRepository.findById(id).orElseThrow();
             item.setStatus(status.getStatus());
@@ -52,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public HttpStatusCode deleteList(long id) {
+    public HttpStatusCode deleteList(ObjectId id) {
         itemRepository.deleteById(id);
         return HttpStatus.ACCEPTED;
     }

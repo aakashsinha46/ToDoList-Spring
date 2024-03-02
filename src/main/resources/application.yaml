@@ -1,15 +1,12 @@
 server:
-  port: {PORT}
+  port: ${PORT}
 
 spring:
+  profiles:
+    active: dev
   application:
     name: TODOLIST
-  datasource:
-    url: ${DB_URL}
-    username:  ${DB_USERNAME}
-    password:  ${DB_PASSWORD}
-    driverClassName: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-      show-sql: true
+  data:
+    mongodb:
+      database: ${DB_NAME}
+      uri: ${DB_URL}d
