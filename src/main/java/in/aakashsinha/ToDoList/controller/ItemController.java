@@ -23,19 +23,19 @@ public class ItemController {
 
     //add new list
     @PostMapping("/add")
-    public ResponseEntity<ObjectId> addToList(@RequestBody RequestBodyForList requestBody){
+    public ResponseEntity<String> addToList(@RequestBody RequestBodyForList requestBody){
         return new ResponseEntity<>(itemService.addToList(requestBody), HttpStatus.CREATED);
     }
 
     //update list
     @PutMapping("/edit/{id}")
-    public ResponseEntity<String> updateList(@PathVariable ObjectId id, @RequestBody RequestBodyForList status){
+    public ResponseEntity<String> updateList(@PathVariable String id, @RequestBody RequestBodyForList status){
         return new ResponseEntity<>(itemService.updateList(id, status));
     }
 
     //delete list
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteList(@PathVariable ObjectId id){
+    public ResponseEntity<String> deleteList(@PathVariable String id){
         return new ResponseEntity<>(itemService.deleteList(id));
     }
 

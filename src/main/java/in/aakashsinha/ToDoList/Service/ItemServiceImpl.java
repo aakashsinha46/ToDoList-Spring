@@ -22,7 +22,7 @@ public class ItemServiceImpl implements ItemService {
     ItemRepository itemRepository;
 
     @Override
-    public ObjectId addToList(RequestBodyForList requestBodyForList) {
+    public String addToList(RequestBodyForList requestBodyForList) {
         ObjectMapper objectMapper = new ObjectMapper();
         Item item = objectMapper.convertValue(requestBodyForList, Item.class);
         item.setTimeStamp(Instant.now());
@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public HttpStatusCode updateList(ObjectId id, RequestBodyForList status) {
+    public HttpStatusCode updateList(String id, RequestBodyForList status) {
 
         //check if exists
         if (itemRepository.findById(id).isPresent()) {
@@ -51,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public HttpStatusCode deleteList(ObjectId id) {
+    public HttpStatusCode deleteList(String id) {
         itemRepository.deleteById(id);
         return HttpStatus.ACCEPTED;
     }

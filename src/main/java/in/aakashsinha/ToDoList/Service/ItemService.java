@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface ItemService {
 
-    ObjectId addToList(RequestBodyForList requestBodyForList);
+    String addToList(RequestBodyForList requestBodyForList);
 
-    HttpStatusCode updateList(ObjectId id, RequestBodyForList status);
+    HttpStatusCode updateList(String id, RequestBodyForList status);
 
-    HttpStatusCode deleteList(ObjectId id);
+    HttpStatusCode deleteList(String id);
 
     List<Item> getAll();
 }

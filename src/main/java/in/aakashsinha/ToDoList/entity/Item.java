@@ -16,7 +16,7 @@ import java.time.Instant;
 @Builder
 public class Item {
     @Id
-    private ObjectId id;
+    private String id;
     @NonNull
     private String list;
     private Instant timeStamp;
