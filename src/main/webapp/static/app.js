@@ -48,9 +48,9 @@ function displayTodos(todos) {
     listItem.innerHTML = `
             <input type="checkbox" ${
               todo.status === "COMPLETE" ? "checked" : ""
-            } onchange="updateTodoStatus(${todo.id}, this.checked)">
+            } onchange="updateTodoStatus(\'${todo.id}\', this.checked)">
             ${todo.task} - ${todo.timeStamp}
-            <button class="delete-btn" onclick="deleteTodo(${todo.id})"><span class="material-symbols-outlined">
+            <button class="delete-btn" onclick="deleteTodo(\'${todo.id}\')"><span class="material-symbols-outlined">
                                      delete
                                                                         </span></button>
         `;
