@@ -29,7 +29,7 @@ public class ItemServiceImpl implements ItemService {
 
         item = itemRepository.save(item);
 
-        log.info("item added");
+        log.info("item added with id:" + item.getId());
         return item.getId();
     }
 
@@ -43,6 +43,7 @@ public class ItemServiceImpl implements ItemService {
             item.setStatus(status.getStatus());
 
             itemRepository.save(item);
+            log.info("item updated with id:" + item.getId());
             return HttpStatus.ACCEPTED;
         }
         //else -> return 404
@@ -52,6 +53,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public HttpStatusCode deleteList(String id) {
+        log.info("item deleted with id:" + id);
         itemRepository.deleteById(id);
         return HttpStatus.ACCEPTED;
     }
